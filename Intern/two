@@ -1,0 +1,72 @@
+import tkinter as tk
+
+def add():
+    num1 = float(entry_num1.get())
+    num2 = float(entry_num2.get())
+    result = num1 + num2
+    entry_result.delete(0, tk.END)
+    entry_result.insert(0, f"{result}")
+
+def subtract():
+    num1 = float(entry_num1.get())
+    num2 = float(entry_num2.get())
+    result = num1 - num2
+    entry_result.delete(0, tk.END)
+    entry_result.insert(0, f"{result}")
+
+def multiply():
+    num1 = float(entry_num1.get())
+    num2 = float(entry_num2.get())
+    result = num1 * num2
+    entry_result.delete(0, tk.END)
+    entry_result.insert(0, f"{result}")
+
+def divide(label_result=None):
+    num1 = float(entry_num1.get())
+    num2 = float(entry_num2.get())
+    if num2 == 0:
+        label_result.config(text="Error: Division by zero")
+    else:
+        result = num1 / num2
+        entry_result.delete(0, tk.END)
+        entry_result.insert(0, f"{result}")
+
+root = tk.Tk()
+root.title("tk")
+root.geometry("400x300")
+
+frame = tk.Frame(root)
+frame.grid(row=0, column=0, padx=20, pady=20)
+
+label1 = tk.Label(frame, text="Calculator", font=("Arial",12,"bold"))
+label1.grid(row=0, column=1, pady=10)
+
+label1 = tk.Label(frame, text="Type value 1: ", font=("Times New roman",12))
+label1.grid(row=1, column=0, pady=10)
+entry_num1 = tk.Entry(frame)
+entry_num1.grid(row=1, column=1, padx=(20, 0), pady=(0, 10))
+
+label2 = tk.Label(frame, text="Type value 2: ", font=("Times New roman",12))
+label2.grid(row=2, column=0, pady=10)
+entry_num2 = tk.Entry(frame)
+entry_num2.grid(row=2, column=1, padx=(20, 0), pady=(0, 10))
+
+# Create buttons
+button_add = tk.Button(frame, text="+", command=add, width=5, bd=4, bg='green')
+button_add.grid(row=3, column=0, padx=(10, 0))
+
+button_subtract = tk.Button(frame, text="-", command=subtract, width=5, bd=4, bg='green')
+button_subtract.grid(row=3, column=1, padx=(10, 0))
+
+button_multiply = tk.Button(frame, text="*", command=multiply, width=5, bd=4, bg='green')
+button_multiply.grid(row=3, column=2, padx=(10, 0))
+
+button_divide = tk.Button(frame, text="/", command=divide, width=5, bd=4, bg='green')
+button_divide.grid(row=3, column=3, padx=(10, 0))
+
+label3 = tk.Label(frame, text="Result: ", font=("Times New roman",12))
+label3.grid(row=4, column=0, pady=10)
+entry_result = tk.Entry(frame)
+entry_result.grid(row=4, column=1, columnspan=2, pady=(10, 0))
+
+root.mainloop() 
